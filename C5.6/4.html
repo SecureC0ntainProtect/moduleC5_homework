@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Приложение с запросом картинки</title>
+</head>
+<body>
+  <h1>Приложение с запросом картинки</h1>
+  <input type="number" id="widthInput" placeholder="Введите ширину от 100 до 300">
+  <input type="number" id="heightInput" placeholder="Введите высоту от 100 до 300">
+  <button id="submitButton">Получить картинку</button>
+  <div id="imageContainer"></div>
+
+  <script>
+    document.getElementById('submitButton').addEventListener('click', function() {
+      let width = parseInt(document.getElementById('widthInput').value);
+      let height = parseInt(document.getElementById('heightInput').value);
+
+      if (isNaN(width) || isNaN(height) || width < 100 || width > 300 || height < 100 || height > 300) {
+        let imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = 'Одно из чисел вне диапазона от 100 до 300';
+      } else {
+        let imageUrl = 'https://picsum.photos/' + width + '/' + height;
+        let imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = '';
+
+        let imageElement = document.createElement('img');
+        imageElement.src = imageUrl;
+        imageContainer.appendChild(imageElement);
+      }
+    });
+  </script>
+</body>
+</html>
